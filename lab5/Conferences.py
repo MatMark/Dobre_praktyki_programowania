@@ -98,7 +98,7 @@ def speaker():
 
         if case == 1:
             if abstrakt:
-                conf_title = str(input("Nazwa konferencji, którą chcsz się zapisać: "))
+                conf_title = str(input("Nazwa konferencji, na którą chcesz się zapisać: "))
 
                 for conference in conferenceList:
                     if conference.title == conf_title:

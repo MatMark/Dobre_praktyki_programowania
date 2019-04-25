@@ -107,6 +107,7 @@ def speaker():
                             print("Zapisano na konferencję o nazwie " + conf_title)
                         else:
                             print("Nie opłacono konferencji")
+                        return
                     else:
                         print("Nie ma konferencji o podanej nazwie")
             else:
@@ -148,6 +149,7 @@ def participant():
                         print("Zapisano na konferencję o nazwie " + conf_title)
                     else:
                         print("Nie opłacono konferencji")
+                    return
                 else:
                     print("Nie ma konferencji o podanej nazwie")
 

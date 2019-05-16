@@ -1,0 +1,4 @@
+# MANIFEST.in
+recursive-include v1 *
+recursive-include v2 *
+recursive-include v3 *

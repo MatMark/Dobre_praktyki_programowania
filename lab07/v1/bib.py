@@ -16,6 +16,13 @@ class Meal:
         self.ingredients = ingredients
 
 
+class Menu:
+
+    def __init__(self, ingredients, count):
+        self.ingredients = ingredients
+        self.count = count
+
+
 list_of_ingredients = [
     Ingredient("jaja", False),
     Ingredient("chleb", False),
@@ -28,11 +35,37 @@ list_of_meals = [
 ]
 
 
-def show_names(ing_list):
+def show_names(ls):
     name_list = []
-    for x in ing_list:
+    for x in ls:
         name_list.append(x.name)
     return name_list
+
+
+def show_meals(ls, meaty):
+    name_list = []
+    for x in ls:
+        if x.meaty == meaty:
+            name_list.append(x.name)
+    return name_list
+
+
+def calculate_ingredients(meal1, count1, meal2, count2):
+    ing_sum = []
+
+    for x in meal1.ingredients:
+        if x in meal2.ingredients:
+            ing_sum.append(Menu(x.name, count1 + count2))
+        else:
+            ing_sum.append(Menu(x.name, count1))
+
+    for x in meal2.ingredients:
+        if x not in meal1.ingredients:
+            ing_sum.append(Menu(x.name, count2))
+
+    print("Potrzebne składniki: ")
+    for x in ing_sum:
+        print(str(x.ingredients) + " - " + str(x.count))
 
 
 def add_new_ingredient():
@@ -88,43 +121,3 @@ def add_new_meal():
           str(meal.meaty) +
           "\nLista składników: " +
           str(show_names(meal.ingredients)))
-
-
-def main():
-    end = False
-    while not end:
-
-        usr_type = int(input("\nCo chcesz zrobić:\n"
-                             "1-Dodać składnik\n"
-                             "2-Dodać danie\n"
-                             "3-Wyświetlić składniki\n"
-                             "4-Wyświetlić dania\n"
-                             "5-Stworzyć jadłospis\n"
-                             "6-Wyjść z aplikacji\n"
-                             ))
-
-        if usr_type == 1:
-            add_new_ingredient()
-
-        elif usr_type == 2:
-            add_new_meal()
-
-        elif usr_type == 3:
-            print("Dostępne składniki: " + str(show_names(list_of_ingredients)))
-
-        elif usr_type == 4:
-            print("Dostępne dania: " + str(show_names(list_of_meals)))
-
-        elif usr_type == 5:
-            print("Work in progress")
-            # meaty_meals = int(input("Podaj liczbę mięsnych posiłków: "))
-            # vegetarian_meals = int(input("Podaj liczbę wegetariańskich posiłków: "))
-
-        elif usr_type == 6:
-            end = True
-
-        else:
-            print("Nie wybrano poprawnie akcji!")
-
-
-main()

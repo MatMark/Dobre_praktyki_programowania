@@ -1,0 +1,8 @@
+setup.py
+lab08.egg-info/PKG-INFO
+lab08.egg-info/SOURCES.txt
+lab08.egg-info/dependency_links.txt
+lab08.egg-info/top_level.txt
+permutations/CPlusPlusPlusPython.py
+permutations/__init__.py
+permutations/permutations.dll

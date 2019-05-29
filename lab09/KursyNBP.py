@@ -6,10 +6,9 @@ class AppDynamicsJob(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Firefox()
         self.driver.implicitly_wait(30)
-        self.verificationErrors = []
     
     def test_app_dynamics_job(self):
-        global EUR, GBP, USD, old_EUR, old_GBP, old_USD
+        global EUR, GBP, USD
         driver = self.driver
         driver.get("https://www.nbp.pl/home.aspx?f=/kursy/kursya.html")
         EUR = driver.find_element_by_xpath("(.//*[normalize-space(text()) and normalize-space(.)='euro'])[1]/following::td[2]").text
@@ -18,19 +17,14 @@ class AppDynamicsJob(unittest.TestCase):
         EUR = EUR.replace(",", ".")
         GBP = GBP.replace(",", ".")
         USD = USD.replace(",", ".")
-
+    
+    def tearDown(self):
+        global EUR, GBP, USD
         file = open("savedData.txt", "r")
         old_EUR = (file.readline())
         old_GBP = (file.readline())
         old_USD = (file.readline())
         file.close()
-
-        self.assertEqual(float(old_EUR), float(EUR))
-        self.assertEqual(float(old_GBP), float(GBP))
-        self.assertEqual(float(old_USD), float(USD))
-    
-    def tearDown(self):
-        global EUR, GBP, USD, old_EUR, old_GBP, old_USD
 
         if float(EUR) == float(old_EUR):
             print("Euro: " + EUR + " bez zmian")
@@ -55,8 +49,6 @@ class AppDynamicsJob(unittest.TestCase):
         f = open("savedData.txt", "w+")
         f.write(str(EUR) + "\n" + str(GBP) + "\n" + str(USD))
         f.close()
-
-        self.assertEqual([], self.verificationErrors)
 
 
 if __name__ == "__main__":
